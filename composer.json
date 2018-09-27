@@ -4,5 +4,8 @@
       "": "library/",
       "TwfChildTheme\\": "library/"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
   }
 }
