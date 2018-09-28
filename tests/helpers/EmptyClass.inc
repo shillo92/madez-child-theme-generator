@@ -1,5 +1,5 @@
 <?php
-namespace TwfChildTheme\Tests\Helpers;
+namespace TwfChildTheme\Tmp;
 
 
 final class EmptyClass
