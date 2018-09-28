@@ -2,6 +2,9 @@
 namespace TwfChildTheme;
 
 
+use TwfChildTheme\Helpers\StylesheetRefreshOptions;
+use TwfChildTheme\Helpers\WordpressFacilizer;
+
 class ChildThemeSetup
 {
     /**
@@ -42,14 +45,11 @@ class ChildThemeSetup
         $mainStylesheetFilename = Config::getMainStylesheetFilename();
 
         // Load parent stylesheet
-        wp_enqueue_style( $parent_style, Config::getParentThemeRootDirname() . '/style.css' );
+        WordpressFacilizer::loadStylesheet($parent_style, Config::getParentThemeRootDirname().'/style.css', [],
+            StylesheetRefreshOptions::NOACTION);
 
         // Load child stylesheet
-        wp_enqueue_style( 'child-style',
-            $mainStylesheetFilename,
-            array( $parent_style ),
-            filemtime($mainStylesheetFilename)
-        );
+        WordpressFacilizer::loadStylesheet('child-style', $mainStylesheetFilename, [$parent_style]);
     }
 
     protected function setupI18N()

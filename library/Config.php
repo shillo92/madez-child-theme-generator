@@ -3,6 +3,11 @@ namespace TwfChildTheme;
 
 final class Config
 {
+    public static function getVersion()
+    {
+        return wp_get_theme()->get('Version');
+    }
+
     /**
      * Returns the original (not translated) text domain found in style.css.
      *
@@ -10,9 +15,7 @@ final class Config
      */
     public static function getTextDomain()
     {
-        $theme = wp_get_theme();
-
-        return $theme->get('TextDomain');
+        return wp_get_theme()->get('TextDomain');
     }
 
     /**
