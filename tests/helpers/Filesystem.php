@@ -3,7 +3,7 @@ namespace TwfChildTheme\Tests\Helpers;
 
 /**
  * Class Filesystem
- * @package TwfChildTheme\Tests\Helpers
+ * @package TwfChildTheme\Tests\Madez
  */
 class Filesystem
 {

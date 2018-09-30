@@ -1,0 +1,1 @@
+console.log('%c main.js is here. ', 'background: #222; color: #bada55');

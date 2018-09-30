@@ -1,5 +1,5 @@
 <?php
-namespace TwfChildTheme\Helpers;
+namespace TwfChildTheme\Madez;
 
 use TwfChildTheme\Config;
 
@@ -7,18 +7,20 @@ class WordpressFacilizer
 {
     /**
      * @param string $name
-     * @param string $filename
+     * @param string $rel_filename Relative path to filename within the theme.
      * @param array $dependencies Defaults to none (empty array).
      * @param int $refreshOptions One of StylesheetRefreshOptions constants. Defaults to StylesheetRefreshOptions::AT_FILE_CHANGE.
      * @param string $media Defaults to 'all'.
      */
-    public static function loadStylesheet($name, $filename, array $dependencies = [],
+    public static function loadStylesheet($name, $rel_filename, array $dependencies = [],
                                           $refreshOptions = StylesheetRefreshOptions::AT_FILE_CHANGE, $media = 'all')
     {
         $verArg = false;
+        $uri = Config::getThemeRootUri().'/'.$rel_filename;
 
         switch ($refreshOptions) {
             case StylesheetRefreshOptions::AT_FILE_CHANGE:
+                $filename = Config::getThemeRootDirname().'/'.$rel_filename;
                 $verArg = filemtime($filename);
                 break;
             case StylesheetRefreshOptions::AT_THEME_VERSION_CHANGE:
@@ -26,7 +28,7 @@ class WordpressFacilizer
                 break;
         }
 
-        wp_enqueue_style($name, $filename, $dependencies, $verArg, $media);
+        wp_enqueue_style($name, $uri, $dependencies, $verArg, $media);
     }
 }
 

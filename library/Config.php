@@ -21,19 +21,29 @@ final class Config
     /**
      * @return string
      */
-    public static function getMainStylesheetFilename()
+    public static function getMainStylesheetRelativeFilename()
     {
-        return self::getThemeRootDirname().'/style.css';
+        return 'style.css';
     }
 
     /**
-     * Returns the path to the parent theme root directory.
+     * Returns the path to the parent theme root URI.
      *
-     * @see get_stylesheet_directory()
+     * @see get_template_directory_uri()
      */
-    public static function getParentThemeRootDirname()
+    public static function getParentThemeRootRelativeUri()
     {
-        return get_template_directory_uri();
+        return '../'.basename(get_template_directory_uri());
+    }
+
+    /**
+     * Returns the path to the theme's root uri.
+     *
+     * @see get_stylesheet_directory_uri()
+     */
+    public static function getThemeRootUri()
+    {
+        return get_stylesheet_directory_uri();
     }
 
     /**
