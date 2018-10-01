@@ -12,7 +12,7 @@ use TwfChildTheme\Tests\Helpers\Filesystem as FilesystemHelper;
  *
  * @package TwfChildTheme\Tests
  */
-class ComposerTest extends TestCase
+class ComposerTest extends \WP_UnitTestCase
 {
     const EMPTYCLASS_DEST_FILENAME = FilesystemHelper::LIBRARY_PATH.'/tmp/EmptyClass.php';
 

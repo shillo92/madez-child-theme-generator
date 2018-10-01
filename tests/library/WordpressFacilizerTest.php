@@ -1,15 +1,11 @@
 <?php
+declare(strict_types=1);
+
 namespace TwfChildTheme\Library;
 
-
-use Framework\TestCase;
-
-/**
- * Tests WordpressFacilizerTest functionality.
- *
- * @package TwfChildTheme\Library
- */
-class WordpressFacilizerTest extends TestCase
+class WordpressFacilizerTest extends \WP_UnitTestCase
 {
-
+    public function testShouldLoadJsFile(): void
+    {
+    }
 }
