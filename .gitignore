@@ -1,6 +1,7 @@
 node_modules
 .npm-debug.log
 .sass-cache
+.DS_Store
 tmp
 vendor
 composer.phar
