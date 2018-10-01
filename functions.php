@@ -1,2 +1,8 @@
 <?php
-esc_html_e( 'Code is Poetry' );
+namespace TwfChildTheme;
+
+use TwfChildTheme\Madez\ChildThemeSetup;
+
+require 'vendor/autoload.php';
+
+ChildThemeSetup::getInstance()->setup();
