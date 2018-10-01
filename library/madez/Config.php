@@ -1,5 +1,5 @@
 <?php
-namespace TwfChildTheme;
+namespace TwfChildTheme\Madez;
 
 final class Config
 {

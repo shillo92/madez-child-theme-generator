@@ -1,9 +1,6 @@
 <?php
 namespace TwfChildTheme\Madez;
 
-
-use TwfChildTheme\Config;
-
 class ChildThemeSetup
 {
     /**
@@ -43,10 +40,9 @@ class ChildThemeSetup
     protected function setupJavascripts()
     {
         $name = 'child-script';
-        $filename = Config::getThemeRootUri() . '/js/build.min.js';
+        $filename = '/js/build.min.js';
 
-        wp_enqueue_script( $name, $filename, [],
-            filemtime(Config::getThemeRootDirname().'/js/build.min.js'), true );
+        WordpressFacilizer::loadScript($name, $filename, ['jquery']);
     }
 
     protected function setupStylesheet()
@@ -56,7 +52,7 @@ class ChildThemeSetup
 
         // Load parent stylesheet
         WordpressFacilizer::loadStylesheet($parent_style, Config::getParentThemeRootRelativeUri().'/style.css', [],
-            StylesheetRefreshOptions::NOACTION);
+            FileRefreshOptions::NOACTION);
 
         // Load child stylesheet
         WordpressFacilizer::loadStylesheet('child-style', $mainStylesheetFilename, [$parent_style]);
