@@ -70,7 +70,8 @@ module.exports = function (grunt) {
                     ],
                     mainFile: 'style.css',
                     domainPath: '/languages',
-                    type: 'wp-theme'
+                    type: 'wp-theme',
+                    updatePoFiles: true
                 }
             }
         },
