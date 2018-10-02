@@ -15,12 +15,6 @@ module.exports = function (grunt) {
                 css: 'css'
             }
         },
-        curl: {
-            'google-fonts-source': {
-                src: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC5c-CLSBYVpJP84UB67ftC4CWaha8qOgQ',
-                dest: 'assets/fonts/src/google-fonts.json'
-            }
-        },
         /* Concat assembles all the Javascript files into one uncompressed file. Good for development */
         concat: {
             theme: {
@@ -55,7 +49,9 @@ module.exports = function (grunt) {
                     cwd: '<%= paths.src.sass %>',
                     src: ['**/*.scss'],
                     dest: '<%= paths.dest.css %>',
-                    ext: '.css'
+                    ext: '.css',
+                    style: 'compressed',
+                    sourcemap: 'none'
                 }]
             }
         },
@@ -72,6 +68,28 @@ module.exports = function (grunt) {
                     domainPath: '/languages',
                     type: 'wp-theme',
                     updatePoFiles: true
+                }
+            }
+        },
+        googlefonts: {
+            build: {
+                options: {
+                    fontPath: 'assets/fonts/',
+                    cssFile: 'css/fonts.css',
+                    fonts: [
+                        {
+                            family: 'Open Sans',
+                            styles: [
+                                400, 700
+                            ]
+                        },
+                        {
+                            family: 'Roboto',
+                            styles: [
+                                400, 700
+                            ]
+                        }
+                    ]
                 }
             }
         },
@@ -97,6 +115,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-wp-i18n');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-google-fonts');
 
     // Default task(s).
     grunt.registerTask('theme', ['uglify']);

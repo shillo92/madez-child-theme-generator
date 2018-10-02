@@ -7,3 +7,5 @@ vendor
 composer.phar
 composer.lock
 languages
+assets/fonts/*
+css/fonts.css
