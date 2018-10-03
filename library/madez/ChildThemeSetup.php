@@ -36,7 +36,6 @@ class ChildThemeSetup
         add_action( 'wp_enqueue_scripts', function () { $this->setupJavascripts(); } );
     }
 
-
     protected function setupJavascripts()
     {
         $name = 'child-script';
@@ -58,8 +57,17 @@ class ChildThemeSetup
         WordpressFacilizer::loadStylesheet('child-style', $mainStylesheetFilename, [$parent_style]);
     }
 
+    /**
+     * Setups the I18N and fires the theme_txtdomain_setup action.
+     *
+     * When finished setup, the 'theme_txtdomain_setup' action is fired and passed with one boolean argument which states whether or not
+     * the text domain was loaded successfully.
+     */
     protected function setupI18N()
     {
-        load_child_theme_textdomain( Config::getTextDomain(), Config::getThemeRootDirname() . '/languages' );
+        do_action(
+            'theme_txtdomain_setup',
+            load_child_theme_textdomain( Config::getTextDomain(), Config::getThemeRootDirname() . '/languages' )
+        );
     }
 }

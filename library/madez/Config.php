@@ -27,7 +27,7 @@ final class Config
     }
 
     /**
-     * Returns the path to the parent theme root URI.
+     * Returns the URI path to the parent theme root directory.
      *
      * @see get_template_directory_uri()
      */
