@@ -1,7 +1,7 @@
 <?php
 namespace TwfChildTheme;
 
-use TwfChildTheme\Madez\ChildThemeSetup;
+use Madez\ChildThemeSetup;
 
 require 'vendor/autoload.php';
 

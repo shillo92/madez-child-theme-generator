@@ -6,9 +6,15 @@
       "TwfChildTheme\\Tests\\": "tests/"
     }
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/shillo92/MadezLib"
+    }
+  ],
   "require-dev": {
   },
   "require": {
-    "symfony/filesystem": "^2.7"
+    "shillo92/MadezLib": "dev-master"
   }
 }
