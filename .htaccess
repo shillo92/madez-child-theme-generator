@@ -1,0 +1,9 @@
+Options -Indexes
+
+<FilesMatch ^((composer|package)\.json$|composer\.lock|Gruntfile\.js)$>
+    Deny from all
+</FilesMatch>
+
+<Directory "bin|node_modules">
+    Deny from all
+</Directory>
