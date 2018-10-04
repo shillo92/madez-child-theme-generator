@@ -44,7 +44,11 @@ module.exports = function (grunt) {
             theme: {
                 files: [{
                     '<%= paths.dest.cssMainFile %>': '<%= paths.src.sassMainFile %>'
-                }, {
+                },
+                    {
+                        'rtl.css': 'rtl.scss'
+                    },
+                    {
                     expand: true,
                     cwd: '<%= paths.src.sass %>',
                     src: ['**/*.scss'],
@@ -99,7 +103,7 @@ module.exports = function (grunt) {
                 tasks: ['concat:theme', 'uglify:theme']
             },
             css: {
-                files: ['style.scss', '<%= paths.src.sass %>/**/*.scss'],
+                files: ['style.scss', 'rtl.scss', '<%= paths.src.sass %>/**/*.scss'],
                 tasks: ['sass:theme']
             },
             i18n: {
