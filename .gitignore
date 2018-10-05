@@ -6,8 +6,10 @@ tmp
 vendor
 composer.phar
 composer.lock
+package-lock.json
 assets/fonts/*
 css/fonts.css
 *.css.map
 rtl.css
 style.css
+npm-debug.log

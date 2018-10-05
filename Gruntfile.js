@@ -6,13 +6,17 @@ module.exports = function (grunt) {
             src: {
                 js: 'js/src/**/*.js',
                 sassMainFile: 'style.scss',
-                sass: 'css/src'
+                sass: 'css/src',
+                faviconMaster: 'assets/favicon/src/favicon.png'
             },
             dest: {
                 js: 'js/build.js',
                 jsMin: 'js/build.min.js',
                 cssMainFile: 'style.css',
-                css: 'css'
+                css: 'css',
+                faviconDir: "assets/favicon/build",
+                fontsDirname: 'assets/fonts',
+                fontsCssFile: 'assets/fonts/fonts.scss'
             }
         },
         /* Concat assembles all the Javascript files into one uncompressed file. Good for development */
@@ -78,8 +82,8 @@ module.exports = function (grunt) {
         googlefonts: {
             build: {
                 options: {
-                    fontPath: 'assets/fonts/',
-                    cssFile: 'css/fonts.css',
+                    fontPath: '<%= paths.dest.fontsDirname %>',
+                    cssFile: '<%= paths.dest.fontsCssFile %>',
                     fonts: [
                         {
                             family: 'Open Sans',
@@ -97,6 +101,68 @@ module.exports = function (grunt) {
                 }
             }
         },
+        realFavicon: {
+            favicons: {
+                src: '<%= paths.src.faviconMaster %>',
+                dest: '<%= paths.dest.faviconDir %>',
+                options: {
+                    iconsPath: '/',
+                    html: [ '<%= paths.dest.faviconDir %>/markups.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'noChange',
+                            assets: {
+                                ios6AndPriorIcons: false,
+                                ios7AndLaterIcons: false,
+                                precomposedIcons: false,
+                                declareOnlyDefaultIcon: true
+                            }
+                        },
+                        desktopBrowser: {},
+                        windows: {
+                            pictureAspect: 'noChange',
+                            backgroundColor: '#da532c',
+                            onConflict: 'override',
+                            assets: {
+                                windows80Ie10Tile: false,
+                                windows10Ie11EdgeTiles: {
+                                    small: false,
+                                    medium: true,
+                                    big: false,
+                                    rectangle: false
+                                }
+                            }
+                        },
+                        androidChrome: {
+                            pictureAspect: 'noChange',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                display: 'standalone',
+                                orientation: 'notSet',
+                                onConflict: 'override',
+                                declared: true
+                            },
+                            assets: {
+                                legacyIcon: false,
+                                lowResolutionIcons: false
+                            }
+                        }
+                    },
+                    settings: {
+                        scalingAlgorithm: 'Mitchell',
+                        errorOnImageTooSmall: false,
+                        readmeFile: false,
+                        htmlCodeFile: false,
+                        usePathAsIs: false
+                    }
+                }
+            }
+        },
+        clean: {
+            favicon: {
+                src: ['<%= paths.dest.faviconDir %>']
+            }
+        },
         watch: {
             javascript: {
                 files: ['<%= paths.src.js %>'],
@@ -109,6 +175,13 @@ module.exports = function (grunt) {
             i18n: {
                 files: ['*.php', './**/*.php', 'style.css'],
                 tasks: ['makepot']
+            },
+            favicon: {
+                files: ['<%= paths.src.faviconMaster %>'],
+                tasks: ['clean:favicon', 'realFavicon'],
+                options: {
+                    event: ['all']
+                }
             }
         }
     });
@@ -120,10 +193,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-wp-i18n');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-google-fonts');
+    grunt.loadNpmTasks('grunt-real-favicon');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default task(s).
     grunt.registerTask('theme', ['uglify']);
     grunt.registerTask('javascript', ['watch']);
     grunt.registerTask('css', ['watch']);
     grunt.registerTask('i18n', ['watch']);
+    grunt.registerTask('favicon', ['watch:favicon']);
 }
