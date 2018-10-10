@@ -106,7 +106,7 @@ module.exports = function (grunt) {
                 src: '<%= paths.src.faviconMaster %>',
                 dest: '<%= paths.dest.faviconDir %>',
                 options: {
-                    iconsPath: '/',
+                    iconsPath: '<%= paths.dest.faviconDir %>',
                     html: [ '<%= paths.dest.faviconDir %>/markups.html' ],
                     design: {
                         ios: {
