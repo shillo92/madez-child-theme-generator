@@ -9,7 +9,7 @@ define( 'ABSPATH', '/srv/www/wplugins/public_html/' );
  * The 'default' theme is symlinked from test/phpunit/data/themedir1/default into
  * the themes directory of the WordPress installation defined above.
  */
-define( 'WP_DEFAULT_THEME', 'default' );
+define( 'WP_DEFAULT_THEME', 'twentyfifteen-child' );
 
 // Test with multisite enabled.
 // Alternatively, use the tests/phpunit/multisite.xml configuration file.
